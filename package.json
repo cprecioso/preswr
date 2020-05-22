@@ -1,6 +1,17 @@
 {
   "name": "preswr",
   "version": "0.0.1",
+  "description": "Preload your SWR hooks on the server",
+  "homepage": "https://github.com/cprecioso/preswr#readme",
+  "bugs": {
+    "url": "https://github.com/cprecioso/preswr/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cprecioso/preswr.git"
+  },
+  "license": "MIT",
+  "author": "Carlos Precioso <kalprestito@gmail.com>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
