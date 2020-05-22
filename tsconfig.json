@@ -1,0 +1,11 @@
+{
+  "extends": "@cprecioso/tsconfig/esm",
+  "include": ["src/**/*", "types/**/*"],
+  "compilerOptions": {
+    "rootDir": "src",
+    "target": "ES2018",
+    "noEmit": true,
+    "declaration": true,
+    "jsx": "react"
+  }
+}

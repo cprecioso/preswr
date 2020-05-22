@@ -1,0 +1,30 @@
+{
+  "name": "preswr",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "prepare": "rollup -c"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@cprecioso/tsconfig": "^0.0.4",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@wessberg/rollup-plugin-ts": "^1.2.24",
+    "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rollup": "^2.10.2",
+    "swr": "^0.2.0",
+    "typescript": "^3.9.2"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "swr": "^0.2.0"
+  }
+}
