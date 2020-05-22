@@ -3,26 +3,23 @@ import useSWR, { keyInterface, responseInterface } from "swr"
 import { useConfigContext } from "./config-context"
 import { defaultFetcher } from "./default-fetcher"
 import { usePreloaderContext } from "./preloader-context"
-import { ConfigInterface, Fetcher, Serializable } from "./types"
+import { ConfigInterface, Fetcher } from "./types"
 import { normalizeKey } from "./util"
 
-declare function _usePreSWR<Data extends Serializable = any, Err = any>(
+declare function _usePreSWR<Data = any, Err = any>(
   key: keyInterface
 ): responseInterface<Data, Err>
 declare function _usePreSWR<Data = any, Err = any>(
   key: keyInterface,
-  config?: ConfigInterface
+  config?: ConfigInterface<Data, Err>
 ): responseInterface<Data, Err>
-declare function _usePreSWR<Data extends Serializable = any, Err = any>(
+declare function _usePreSWR<Data = any, Err = any>(
   key: keyInterface,
   fetcher?: Fetcher<Data>,
-  config?: ConfigInterface
+  config?: ConfigInterface<Data, Err>
 ): responseInterface<Data, Err>
 
-export const usePreSWR: typeof _usePreSWR = <
-  Data extends Serializable = any,
-  Err = any
->(
+export const usePreSWR: typeof _usePreSWR = <Data = any, Err = any>(
   key: keyInterface,
   fetcherOrConfig?: Fetcher<Data> | ConfigInterface<Data, Err>,
   maybeConfig?: ConfigInterface
