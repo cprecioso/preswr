@@ -1,14 +1,28 @@
 import React from "react"
 import useSWR, { keyInterface, responseInterface } from "swr"
 import { useConfigContext } from "./config-context"
+import { defaultFetcher } from "./default-fetcher"
 import { usePreloaderContext } from "./preloader-context"
 import { ConfigInterface, Fetcher, Serializable } from "./types"
 import { normalizeKey } from "./util"
 
-export const usePreSWR = <Data extends Serializable = any, Err = any>(
+declare function _usePreSWR<Data extends Serializable = any, Err = any>(
   key: keyInterface,
-  fetcher: Fetcher<Data>,
+  fetcher?: Fetcher<Data>,
   config?: ConfigInterface
+): responseInterface<Data, Err>
+declare function _usePreSWR<Data = any, Err = any>(
+  key: keyInterface,
+  config: ConfigInterface
+): responseInterface<Data, Err>
+
+export const usePreSWR: typeof _usePreSWR = <
+  Data extends Serializable = any,
+  Err = any
+>(
+  key: keyInterface,
+  fetcherOrConfig?: Fetcher<Data> | ConfigInterface<Data, Err>,
+  maybeConfig?: ConfigInterface
 ): responseInterface<Data, Err> => {
   const data = usePreloaderContext()
   const normalizedKey = normalizeKey(key)
@@ -16,6 +30,17 @@ export const usePreSWR = <Data extends Serializable = any, Err = any>(
     () => data.memory[JSON.stringify(normalizedKey)],
     normalizedKey ?? []
   )
+
+  const config =
+    maybeConfig ??
+    (typeof fetcherOrConfig !== "function" ? fetcherOrConfig : null) ??
+    {}
+
+  const fetcher =
+    (typeof fetcherOrConfig === "function" ? fetcherOrConfig : null) ??
+    config?.fetcher ??
+    useConfigContext().fetcher ??
+    defaultFetcher
 
   if (data.isCollecting) {
     if (normalizedKey != null) {
@@ -28,12 +53,8 @@ export const usePreSWR = <Data extends Serializable = any, Err = any>(
     }
   }
 
-  const ctxConfig = useConfigContext()
-
   return useSWR(key, fetcher, {
-    ...ctxConfig,
     initialData,
     ...config,
-    fetcher: undefined,
   })
 }

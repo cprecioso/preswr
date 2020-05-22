@@ -14,7 +14,7 @@ export type Fetcher<D extends Serializable> = (...args: any[]) => Promise<D>
 export type ConfigInterface<
   Data extends Serializable = any,
   Err = any
-> = SWRConfigInterface<Data, Err, any> & { fetcher?: undefined }
+> = SWRConfigInterface<Data, Err, Fetcher<Data>>
 
 export type InternalData = InternalData.CollectPhase | InternalData.HydratePhase
 export namespace InternalData {
