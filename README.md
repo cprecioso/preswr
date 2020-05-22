@@ -45,8 +45,23 @@ It is allowed to mix `usePreSWR` calls and `useSWR` calls freely, but only the
 
 ### `preloaded`
 
-It's a function which takes a `React` component and returns an object with two
-properties:
+It's a function which takes a `React` component, and an optional options object,
+and returns an object with two properties.
+
+```js
+preloaded(
+  MyComponent,
+  /* this object, and all its properties, are optional */
+  {
+    /**
+     * PreSWR analyzes the tree multiple times to make sure that all
+     * conditional rendering is taken care of. You can configure how many times
+     * this can happen, or set `false` to disable deep analyzing.
+     */
+    maxDepth: 20,
+  }
+)
+```
 
 - `Component` is your original component, but it takes an extra prop with the
   preloaded data. You need to use this component in place of the original one to
@@ -62,7 +77,8 @@ properties:
 - Make sure you follow the
   [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html)
 - When `preloadData` is called, your React component is rendered in the
-  background, which might invoke side-effects if your code uses them.
+  background (maybe multiple times!), which might invoke side-effects if your
+  code uses them.
 - Your `fetcher` functions must work in the context you're using
   `preloadData()`. You can provide an `initialData` config key in the call to
   bypass calling them.
