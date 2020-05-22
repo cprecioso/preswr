@@ -10,26 +10,16 @@ export type ConfigInterface<Data = any, Err = any> = SWRConfigInterface<
   Fetcher<Data>
 >
 
-export type InternalData = InternalData.CollectPhase | InternalData.HydratePhase
+export interface InternalData {
+  readonly isCollecting: boolean
+  memory: Record<string, InternalData.MemoryCell>
+}
+
 export namespace InternalData {
-  interface _Base {
-    readonly isCollecting: boolean
-  }
-
-  export interface CollectPhase extends _Base {
-    readonly isCollecting: true
-    memory: Record<string, MemoryCell>
-  }
-
   export interface MemoryCell<D = any> {
     normalizedKey?: any[]
     fetcher?: Fetcher<D>
     initialData?: D
-  }
-
-  export interface HydratePhase extends _Base {
-    readonly isCollecting: false
-    memory: Record<string, MemoryCell>
   }
 }
 
