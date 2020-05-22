@@ -7,13 +7,16 @@ import { ConfigInterface, Fetcher, Serializable } from "./types"
 import { normalizeKey } from "./util"
 
 declare function _usePreSWR<Data extends Serializable = any, Err = any>(
-  key: keyInterface,
-  fetcher?: Fetcher<Data>,
-  config?: ConfigInterface
+  key: keyInterface
 ): responseInterface<Data, Err>
 declare function _usePreSWR<Data = any, Err = any>(
   key: keyInterface,
-  config: ConfigInterface
+  config?: ConfigInterface
+): responseInterface<Data, Err>
+declare function _usePreSWR<Data extends Serializable = any, Err = any>(
+  key: keyInterface,
+  fetcher?: Fetcher<Data>,
+  config?: ConfigInterface
 ): responseInterface<Data, Err>
 
 export const usePreSWR: typeof _usePreSWR = <
