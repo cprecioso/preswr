@@ -50,7 +50,7 @@ export namespace WrappedComponent {
 }
 
 export interface Preloader<P> {
-  component: WrappedComponent<P>
+  Component: WrappedComponent<P>
   preloadData: (props: P) => Promise<WrappedComponent.Props<P>>
 }
 
