@@ -2,6 +2,12 @@
   "name": "preswr",
   "version": "1.0.0",
   "description": "Preload your SWR hooks on the server",
+  "keywords": [
+    "swr",
+    "preload",
+    "ssr",
+    "next"
+  ],
   "homepage": "https://github.com/cprecioso/preswr#readme",
   "bugs": {
     "url": "https://github.com/cprecioso/preswr/issues"
