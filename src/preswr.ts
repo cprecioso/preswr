@@ -1,19 +1,9 @@
 import React from "react"
-import useSWR, {
-  ConfigInterface as SWRConfigInterface,
-  keyInterface,
-  responseInterface,
-} from "swr"
+import useSWR, { keyInterface, responseInterface } from "swr"
 import { useConfigContext } from "./config-context"
 import { usePreloaderContext } from "./preloader-context"
-import { Fetcher } from "./types"
+import { ConfigInterface, Fetcher } from "./types"
 import { normalizeKey } from "./util"
-
-export type ConfigInterface<Data = any, Err = any> = SWRConfigInterface<
-  Data,
-  Err,
-  any
-> & { fetcher?: undefined }
 
 export const usePreSWR = <Data = any, Err = any>(
   key: keyInterface,

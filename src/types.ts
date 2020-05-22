@@ -1,6 +1,13 @@
 import { ComponentType } from "react"
+import { ConfigInterface as SWRConfigInterface } from "swr"
 
 export type Fetcher<D> = (...args: any[]) => Promise<D>
+
+export type ConfigInterface<Data = any, Err = any> = SWRConfigInterface<
+  Data,
+  Err,
+  any
+> & { fetcher?: undefined }
 
 export type InternalData = InternalData.CollectPhase | InternalData.HydratePhase
 export namespace InternalData {
