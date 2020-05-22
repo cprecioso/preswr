@@ -15,7 +15,7 @@ export const makeWrappedComponent: <T>(
   return (
     <PreloaderProvider value={data}>
       {
-        // @ts-ignore
+        // @ts-expect-error
         <InnerComponent {...props} />
       }
     </PreloaderProvider>
