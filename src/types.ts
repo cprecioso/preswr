@@ -22,14 +22,14 @@ export namespace InternalData {
   }
 
   export interface MemoryCell<D = any> {
-    normalizedKey: any[]
-    fetcher: Fetcher<D>
+    normalizedKey?: any[]
+    fetcher?: Fetcher<D>
     initialData?: D
   }
 
   export interface HydratePhase extends _Base {
     readonly isCollecting: false
-    memory: Record<string, any>
+    memory: Record<string, MemoryCell>
   }
 }
 

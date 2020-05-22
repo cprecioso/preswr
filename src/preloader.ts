@@ -17,6 +17,7 @@ export const makePreloader = <T>(
   const Component = makeWrappedComponent(innerComponent)
   return {
     Component,
-    preloadData: async (props: T) => preloadData(Component, props),
+    preloadData: async (props: T, options?: Partial<PreloadDataOptions>) =>
+      preloadData(Component, props, options),
   }
 }

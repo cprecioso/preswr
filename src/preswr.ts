@@ -29,7 +29,7 @@ export const usePreSWR: typeof _usePreSWR = <Data = any, Err = any>(
   const [initialData] = React.useState(() => {
     const normalizedKey = normalizeKey(key)
     const stringKey = JSON.stringify(normalizedKey)
-    return data.memory[stringKey]
+    return data.memory[stringKey]?.initialData
   })
 
   const config =
