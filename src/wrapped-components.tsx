@@ -5,11 +5,11 @@ import { InternalData, WrappedComponent } from "./types"
 export const makeWrappedComponent: <T>(
   component: ComponentType<T>
 ) => WrappedComponent<T> = (InnerComponent) => ({
-  __usepreswr_preloaded_props__,
+  __usepreswr_internal_preloaded_props__,
   ...props
 }) => {
   const [data] = React.useState<InternalData>(
-    () => __usepreswr_preloaded_props__ ?? createPreloaderContext()
+    () => __usepreswr_internal_preloaded_props__ ?? createPreloaderContext()
   )
 
   return (

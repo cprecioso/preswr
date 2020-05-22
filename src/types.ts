@@ -33,7 +33,8 @@ export namespace InternalData {
   }
 }
 
-export const WRAPPED_COMPONENT_INTERNAL_KEY = "__usepreswr_preloaded_props__"
+export const WRAPPED_COMPONENT_INTERNAL_KEY =
+  "__usepreswr_internal_preloaded_props__"
 export type WrappedComponent<T> = ComponentType<WrappedComponent.Props<T>>
 export namespace WrappedComponent {
   export type Props<T> = T & WrappedComponent.InternalProps
