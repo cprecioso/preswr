@@ -25,11 +25,12 @@ export const usePreSWR: typeof _usePreSWR = <
   maybeConfig?: ConfigInterface
 ): responseInterface<Data, Err> => {
   const data = usePreloaderContext()
-  const normalizedKey = normalizeKey(key)
-  const initialData = React.useMemo(
-    () => data.memory[JSON.stringify(normalizedKey)],
-    normalizedKey ?? []
-  )
+
+  const [initialData] = React.useState(() => {
+    const normalizedKey = normalizeKey(key)
+    const stringKey = JSON.stringify(normalizedKey)
+    return data.memory[stringKey]
+  })
 
   const config =
     maybeConfig ??
@@ -43,8 +44,10 @@ export const usePreSWR: typeof _usePreSWR = <
     defaultFetcher
 
   if (data.isCollecting) {
+    const normalizedKey = normalizeKey(key)
+    const stringKey = JSON.stringify(normalizedKey)
+
     if (normalizedKey != null) {
-      const stringKey = JSON.stringify(normalizedKey)
       data.memory[stringKey] = {
         normalizedKey,
         fetcher,
