@@ -6,6 +6,13 @@ import { InternalData, WrappedComponent } from "./types"
 import { asyncMapValues } from "./util"
 
 export interface PreloadDataOptions {
+  /**
+   * Maximum amount of times that PreSWR will re-render your component tree
+   * looking for changes in the data fatching. Set to `false` to disable deep
+   * rendering.
+   *
+   * @default 10
+   */
   maxDepth: number | false
 }
 
