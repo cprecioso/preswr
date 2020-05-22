@@ -10,7 +10,7 @@ class InternalPreloader<P> implements Preloader<P> {
 
   component = makeWrappedComponent(this._innerComponent)
 
-  async preloadData(props: P): Promise<WrappedComponent.Props<P>> {
+  preloadData = async (props: P): Promise<WrappedComponent.Props<P>> => {
     const memory: Record<string, InternalData.MemoryCell> = {}
 
     ReactDOM.renderToStaticMarkup(
