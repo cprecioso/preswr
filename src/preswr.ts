@@ -4,6 +4,7 @@ import useSWR, {
   keyInterface,
   responseInterface,
 } from "swr"
+import { useConfigContext } from "./config-context"
 import { usePreloaderContext } from "./preloader-context"
 import { Fetcher } from "./types"
 import { normalizeKey } from "./util"
@@ -37,7 +38,10 @@ export const usePreSWR = <Data = any, Err = any>(
     }
   }
 
+  const ctxConfig = useConfigContext()
+
   return useSWR(key, fetcher, {
+    ...ctxConfig,
     initialData,
     ...config,
     fetcher: undefined,
