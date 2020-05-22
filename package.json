@@ -1,6 +1,6 @@
 {
   "name": "preswr",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Preload your SWR hooks on the server",
   "homepage": "https://github.com/cprecioso/preswr#readme",
   "bugs": {
