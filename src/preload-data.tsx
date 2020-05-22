@@ -23,8 +23,8 @@ export const preloadData: <P>(
   const preloadedMemory = await asyncMapValues(
     memory,
     async ({ normalizedKey, fetcher, initialData }) => {
-      if (initialData != null) return [normalizedKey, initialData]
-      return [normalizedKey, await fetcher(...normalizedKey)]
+      if (initialData != null) return initialData
+      return await fetcher(...normalizedKey)
     }
   )
 
