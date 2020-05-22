@@ -2,10 +2,10 @@ import React from "react"
 import useSWR, { keyInterface, responseInterface } from "swr"
 import { useConfigContext } from "./config-context"
 import { usePreloaderContext } from "./preloader-context"
-import { ConfigInterface, Fetcher } from "./types"
+import { ConfigInterface, Fetcher, Serializable } from "./types"
 import { normalizeKey } from "./util"
 
-export const usePreSWR = <Data = any, Err = any>(
+export const usePreSWR = <Data extends Serializable = any, Err = any>(
   key: keyInterface,
   fetcher: Fetcher<Data>,
   config?: ConfigInterface

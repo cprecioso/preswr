@@ -1,13 +1,20 @@
 import { ComponentType } from "react"
 import { ConfigInterface as SWRConfigInterface } from "swr"
 
-export type Fetcher<D> = (...args: any[]) => Promise<D>
+export type Serializable =
+  | string
+  | number
+  | { [key: string]: Serializable }
+  | Serializable[]
+  | boolean
+  | null
 
-export type ConfigInterface<Data = any, Err = any> = SWRConfigInterface<
-  Data,
-  Err,
-  any
-> & { fetcher?: undefined }
+export type Fetcher<D extends Serializable> = (...args: any[]) => Promise<D>
+
+export type ConfigInterface<
+  Data extends Serializable = any,
+  Err = any
+> = SWRConfigInterface<Data, Err, any> & { fetcher?: undefined }
 
 export type InternalData = InternalData.CollectPhase | InternalData.HydratePhase
 export namespace InternalData {
@@ -20,7 +27,7 @@ export namespace InternalData {
     memory: Record<string, MemoryCell>
   }
 
-  export interface MemoryCell<D = unknown> {
+  export interface MemoryCell<D extends Serializable = any> {
     normalizedKey: any[]
     fetcher: Fetcher<D>
     initialData?: D
