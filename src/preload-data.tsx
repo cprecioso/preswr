@@ -4,6 +4,9 @@ import { createPreloaderContext } from "./preloader-context"
 import { InternalData, WrappedComponent } from "./types"
 import { asyncMapValues } from "./util"
 
+export interface PreloadDataOptions {
+}
+
 export const preloadData: <P>(
   wrappedComponent: WrappedComponent<P>,
   props: P

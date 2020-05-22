@@ -1,5 +1,6 @@
 import { ComponentType } from "react"
 import { ConfigInterface as SWRConfigInterface } from "swr"
+import { Preloader } from "./preloader"
 
 export type Fetcher<D> = (...args: any[]) => Promise<D>
 
@@ -40,11 +41,6 @@ export namespace WrappedComponent {
   export interface InternalProps {
     [WRAPPED_COMPONENT_INTERNAL_KEY]?: InternalData
   }
-}
-
-export interface Preloader<P> {
-  Component: WrappedComponent<P>
-  preloadData: (props: P) => Promise<WrappedComponent.Props<P>>
 }
 
 export type PreloaderProps<T extends Preloader<any>> = T extends Preloader<

@@ -1,4 +1,5 @@
 export { ConfigProvider as PreSWRConfig } from "./config-context"
-export { makePreloader as preloaded } from "./preloader"
+export { PreloadDataOptions } from "./preload-data"
+export { makePreloader as preloaded, Preloader } from "./preloader"
 export { usePreSWR as default } from "./preswr"
 export * from "./types"

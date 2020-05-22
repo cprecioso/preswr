@@ -1,7 +1,15 @@
 import { ComponentType } from "react"
-import { preloadData } from "./preload-data"
-import { Preloader } from "./types"
+import { preloadData, PreloadDataOptions } from "./preload-data"
+import { WrappedComponent } from "./types"
 import { makeWrappedComponent } from "./wrapped-components"
+
+export interface Preloader<P> {
+  Component: WrappedComponent<P>
+  preloadData: (
+    props: P,
+    options?: Partial<PreloadDataOptions>
+  ) => Promise<WrappedComponent.Props<P>>
+}
 
 export const makePreloader = <T>(
   innerComponent: ComponentType<T>
